@@ -21,6 +21,7 @@ export default function NewBlog() {
 
             setForm({ title: "", description:""});
 
+            alert("Blog added successfully!");
          console.log(response.data)
        } catch (error) {
         console.log(error);
@@ -31,7 +32,7 @@ export default function NewBlog() {
 
   return (
     <>
-      <div className="bg-blue-200 w-full h-screen">
+      <div className="bg-blue-300 w-full h-screen">
         <div className="p-10 flex items-center justify-center ">
           <form action="" onSubmit={addNewBlog}>
             <div className="flex flex-col gap-2 my-8 ">

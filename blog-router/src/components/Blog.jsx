@@ -1,7 +1,48 @@
 import React from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default function Blog() {
+const API_URL = "http://localhost:3011/blogs";
+
+export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        setBlogs(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, [isLoading]);
+
   return (
-    <div>Blog</div>
-  )
+    <>
+      <div className="bg-blue-300">
+        <h2 className="text-indigo-600 text-3xl py-5 px-12">Favourite Blogs</h2>
+        <div className="px-12  gap-5 ">
+          <ul className="flex flex-col w-[50%] gap-3 my-5">
+            {blogs
+              .filter((blog) => blog.favourite === true)
+              .map((blog) => (
+                <li
+                  key={blog.id}
+                  className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
+                >
+                  <div className="text-3xl">{blog.title}</div>
+                  <div>{blog.description}</div>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
+    </>
+  );
+
 }
