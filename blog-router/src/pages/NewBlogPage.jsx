@@ -1,7 +1,10 @@
 import React from 'react'
+import NewBlog from '../components/NewBlog'
 
 export default function NewBlogPage() {
   return (
-    <div>NewBlogPage</div>
+    <>
+      <NewBlog/>
+    </>
   )
 }
