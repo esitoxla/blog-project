@@ -8,17 +8,17 @@ const API_URL = "http://localhost:3011/blogs";
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null)
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(API_URL);
         setBlogs(response.data);
-        setIsLoading(false);
+       
       } catch (error) {
         console.log(error);
-        setIsLoading(false);
+        
       }
     };
     fetchBlogs();
@@ -77,7 +77,7 @@ export default function Blog() {
         <div className="px-12  gap-5 flex">
           <ul className="flex flex-col w-[50%] gap-3 my-5">
             {blogs
-              .filter((blog) => blog.favourite === true)
+              // .filter((blog) => blog.favourite === true)
               .map((blog) => (
                 <li
                   key={blog.id}
@@ -117,13 +117,12 @@ export default function Blog() {
           {/* getOne blog */}
           <div className="w-[50%] bg-white rounded-xl shadow-md p-8 h-fit my-6">
             {selectedBlog ? (
-              <>
+              <div>
                 <h3 className="text-2xl font-bold mb-4">
                   {selectedBlog.title}
                 </h3>
                 <p className="text-gray-700">{selectedBlog.description}</p>
-                <p>{selectedBlog.details}</p>
-              </>
+              </div>
             ) : (
               <p className="text-gray-500">
                 Click a description to see its details here.
