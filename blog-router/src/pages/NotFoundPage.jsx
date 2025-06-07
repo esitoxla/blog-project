@@ -5,7 +5,7 @@ import {Link} from "react-router"
 export default function NotFoundPage() {
   
     const error = useRouteError();
-    const navigate = useNavigate();
+    
 
     return (
       <div className="flex flex-col justify-center items-center h-[100vh] bg-blue-100">
