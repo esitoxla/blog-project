@@ -36,7 +36,7 @@ export default function Home() {
                   key={blog.id}
                   className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
                 >
-                  <div className="text-3xl">{blog.title}</div>
+                  <div className="text-2xl font-bold ">{blog.title}</div>
                   <div>{blog.description}</div>
                 </li>
               ))}
@@ -49,7 +49,7 @@ export default function Home() {
             Favourite Blogs
           </h2>
           <div className="px-12 flex  flex-col gap-5 ">
-            <ul className="flex gap-3 my-5">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
               {blogs
                 .filter((blog) => blog.favourite === true)
                 .map((blog) => (
@@ -57,7 +57,7 @@ export default function Home() {
                     key={blog.id}
                     className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
                   >
-                    <div className="text-3xl">{blog.title}</div>
+                    <div className="text-2xl font-bold">{blog.title}</div>
                     <div>{blog.description}</div>
                   </li>
                 ))}

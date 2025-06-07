@@ -1,34 +1,36 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios';
+import React from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const API_URL = "http://localhost:3011/blogs";
 
 export default function NewBlog() {
-    const [form, setForm] = useState({
-        title: "",
-        description:""
-    })
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    details: "",
+  });
 
-    async function addNewBlog(event) {
-        event.preventDefault(); 
-        const {title, description} = form;
+  async function addNewBlog(event) {
+    event.preventDefault();
+    const { title, description, details } = form;
 
-        if(!title || !description) return;
+    if (!title || !description || !details) return;
 
-       try {
-         const response = await axios.post(API_URL, form);
+    try {
+      const response = await axios.post(API_URL, {
+        ...form,
+        favourite: false,
+      });
 
-            setForm({ title: "", description:""});
+      setForm({ title: "", description: "", details: "" });
 
-            alert("Blog added successfully!");
-         console.log(response.data)
-       } catch (error) {
-        console.log(error);
-       }
+      alert("Blog added successfully!");
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
     }
-
-
+  }
 
   return (
     <>
@@ -50,17 +52,35 @@ export default function NewBlog() {
               />
             </div>
 
-            <div className="flex flex-col gap-2 my-8">
+            <div className="flex flex-col gap-2 my-8 ">
               <label htmlFor="" className="text-2xl">
                 Description:
               </label>
               <input
                 type="text"
-                placeholder="Enter description..."
-                className="w-[35rem] bg-white h-[5rem] px-5  "
+                placeholder="Enter title..."
+                className="w-[35rem] bg-white h-[40px] px-5 "
                 value={form.description}
                 onChange={(event) =>
-                  setForm((prev) => ({ ...prev, description: event.target.value }))
+                  setForm((prev) => ({
+                    ...prev,
+                    description: event.target.value,
+                  }))
+                }
+              />
+            </div>
+
+            <div className="flex flex-col gap-2 my-8">
+              <label htmlFor="" className="text-2xl">
+                Details:
+              </label>
+              <input
+                type="text"
+                placeholder="Enter description..."
+                className="w-[35rem] bg-white h-[5rem] px-5  "
+                value={form.details}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, details: event.target.value }))
                 }
               />
             </div>
