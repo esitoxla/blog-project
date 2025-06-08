@@ -34,7 +34,7 @@ export default function Home() {
               {blogs.map((blog) => (
                 <li
                   key={blog.id}
-                  className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
+                  className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10 transition-transform duration-300 hover:-translate-y-2"
                 >
                   <div className="text-2xl font-bold ">{blog.title}</div>
                   <div className="truncate w-full">{blog.description}</div>
@@ -55,7 +55,7 @@ export default function Home() {
                 .map((blog) => (
                   <li
                     key={blog.id}
-                    className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
+                    className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10 transition-transform duration-300 hover:-translate-y-2"
                   >
                     <div className="text-2xl font-bold">{blog.title}</div>
                     <div className="truncate w-full">{blog.description}</div>

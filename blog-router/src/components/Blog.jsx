@@ -70,7 +70,7 @@ export default function Blog() {
               .map((blog) => (
                 <li
                   key={blog.id}
-                  className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
+                  className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10 transition-transform duration-300 hover:-translate-y-2"
                 >
                   <div className="flex justify-between items-center">
                     <div className="text-3xl">{blog.title}</div>
@@ -85,7 +85,7 @@ export default function Blog() {
                       </div>
 
                       <button
-                        className=" border-1 border-red-500 w-[4rem] h-[2rem] text-red-500 rounded "
+                        className=" border-1 border-red-500 w-[4rem] h-[2rem] text-red-500 rounded cursor-pointer "
                         onClick={() => handleDelete(blog.id)}
                       >
                         del
