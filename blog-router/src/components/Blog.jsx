@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
@@ -7,68 +7,57 @@ const API_URL = "http://localhost:3011/blogs";
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const [selectedBlog, setSelectedBlog] = useState(null)
-  
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(API_URL);
         setBlogs(response.data);
-       
       } catch (error) {
         console.log(error);
-        
       }
     };
     fetchBlogs();
   }, []);
 
-
-
-
-    async function handleDelete (id) {
-      const isDeleted = confirm("Are you sure you want to delete")
-      if (!isDeleted) return;
-      try {
-        const response = await axios.delete(`${API_URL}/${id}`)
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  async function handleDelete(id) {
+    const isDeleted = confirm("Are you sure you want to delete");
+    if (!isDeleted) return;
+    try {
+      const response = await axios.delete(`${API_URL}/${id}`);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    
-    async function handleUpdate (id) {
-     try {
-      const blogToUpdate = blogs.find((blog) => blog.id === id)
+  async function handleUpdate(id) {
+    try {
+      const blogToUpdate = blogs.find((blog) => blog.id === id);
       const newFavouriteStatus = !blogToUpdate.favourite;
 
-       await axios.put(`${API_URL}/${id}`, {favourite: newFavouriteStatus})
+      await axios.put(`${API_URL}/${id}`, { favourite: newFavouriteStatus });
 
-       setBlogs((prev) =>
-        prev.map((blog) => blog.id === id ? {...blog, favourite: newFavouriteStatus} : blog))
-      
-     } catch (error) {
-        console.log(error)
-     }
+      setBlogs((prev) =>
+        prev.map((blog) =>
+          blog.id === id ? { ...blog, favourite: newFavouriteStatus } : blog
+        )
+      );
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-
-      async function handleSelectedBlog (id) {
-       try {
-         const response = await axios.get(`${API_URL}/${id}`)
-         setSelectedBlog(response.data)
-         console.log(response.data)
-       } catch (error) {
-          console.log(error)
-       }
-      }
-
-
-
-
-
+  async function handleSelectedBlog(id) {
+    try {
+      const response = await axios.get(`${API_URL}/${id}`);
+      setSelectedBlog(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -106,7 +95,7 @@ export default function Blog() {
 
                   <div
                     onClick={() => handleSelectedBlog(blog.id)}
-                    className="cursor-pointer"
+                    className="cursor-pointer truncate w-full"
                   >
                     {blog.description}
                   </div>
@@ -133,5 +122,4 @@ export default function Blog() {
       </div>
     </>
   );
-
 }

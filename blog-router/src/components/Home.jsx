@@ -37,7 +37,7 @@ export default function Home() {
                   className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
                 >
                   <div className="text-2xl font-bold ">{blog.title}</div>
-                  <div>{blog.description}</div>
+                  <div className="truncate w-full">{blog.description}</div>
                 </li>
               ))}
             </ul>
@@ -58,7 +58,7 @@ export default function Home() {
                     className="flex flex-col gap-5 bg-white shadow-md rounded-xl p-10"
                   >
                     <div className="text-2xl font-bold">{blog.title}</div>
-                    <div>{blog.description}</div>
+                    <div className="truncate w-full">{blog.description}</div>
                   </li>
                 ))}
             </ul>
